@@ -1,0 +1,145 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/AobaIwaki123/lumi-resources/main/schema/resources.v1.json",
+  "title": "lumi resource registry",
+  "type": "object",
+  "required": ["version", "updated_at", "resources"],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date"
+    },
+    "resources": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/resource"
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "resource": {
+      "type": "object",
+      "required": ["id", "display_name", "aliases", "source_bindings", "evidence"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        },
+        "display_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1
+        },
+        "source_bindings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sourceBinding"
+          },
+          "minItems": 1
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "sourceBinding": {
+      "type": "object",
+      "required": ["service", "kind", "locator_type", "locator", "scope", "cli", "url", "status", "checked_at"],
+      "properties": {
+        "service": {
+          "enum": ["lumitlink", "lumitree", "lumidive"]
+        },
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "locator": {
+          "type": "string",
+          "minLength": 1
+        },
+        "provider_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope": {
+          "enum": ["group", "group-calendar", "member-proxy", "related"]
+        },
+        "cli": {
+          "type": "object",
+          "required": ["binary", "args"],
+          "properties": {
+            "binary": {
+              "type": "string",
+              "minLength": 1
+            },
+            "args": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "status": {
+          "enum": ["verified", "candidate", "stale"]
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": ["kind", "url", "note", "checked_at"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "note": {
+          "type": "string",
+          "minLength": 1
+        },
+        "checked_at": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    }
+  }
+}
+

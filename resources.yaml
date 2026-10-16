@@ -1,0 +1,75 @@
+version: 1
+updated_at: "2026-10-16"
+
+resources:
+  - id: rookey-rookeys
+    display_name: "ROOKEY♡ROOKEYS"
+    aliases:
+      - "ルキルキ"
+      - "ROOKEYROOKEYS"
+      - "@ROOKEYROOKEYS"
+
+    source_bindings:
+      - service: lumitree
+        kind: calendar
+        locator_type: calendar_alias
+        locator: "plus_newidol"
+        scope: group-calendar
+        cli:
+          binary: lumitree
+          args:
+            - candidate
+            - "plus_newidol"
+        url: "https://timetreeapp.com/public_calendars/plus_newidol"
+        status: verified
+        checked_at: "2026-10-16"
+        notes:
+          - "公式プロフィールのライブ予定リンクから解決した公開カレンダー"
+          - "month指定で空になる場合があるため、年指定または月なしで取得してから日付を絞り込む"
+
+      - service: lumidive
+        kind: artist
+        locator_type: artist_url
+        locator: "https://ticketdive.com/artist/kGnh5rGrPQGi4OEoaoIm"
+        provider_id: "kGnh5rGrPQGi4OEoaoIm"
+        scope: group
+        cli:
+          binary: lumidive
+          args:
+            - candidate
+            - "https://ticketdive.com/artist/kGnh5rGrPQGi4OEoaoIm"
+        url: "https://ticketdive.com/artist/kGnh5rGrPQGi4OEoaoIm"
+        status: verified
+        checked_at: "2026-10-16"
+
+      - service: lumitlink
+        kind: profile
+        locator_type: username
+        locator: "amamiyasaku"
+        scope: member-proxy
+        cli:
+          binary: lumitlink
+          args:
+            - events
+            - "amamiyasaku"
+        url: "https://lit.link/amamiyasaku"
+        status: verified
+        checked_at: "2026-10-16"
+        notes:
+          - "雨宮サク個人のLit.linkであり、グループ公式IDではない"
+          - "グループ出演予定を含む補助ソースとして利用する"
+
+    evidence:
+      - kind: official-profile
+        url: "https://x.com/ROOKEYROOKEYS"
+        note: "正式名称、略称、ライブ予定リンクの根拠"
+        checked_at: "2026-10-16"
+      - kind: official-calendar
+        url: "https://timetreeapp.com/public_calendars/plus_newidol"
+        note: "公式プロフィールから解決したTimeTree公開カレンダー"
+        checked_at: "2026-10-16"
+      - kind: provider-artist
+        url: "https://ticketdive.com/artist/kGnh5rGrPQGi4OEoaoIm"
+        note: "TicketDiveのROOKEY♡ROOKEYSアーティストページ"
+        checked_at: "2026-10-16"
+
